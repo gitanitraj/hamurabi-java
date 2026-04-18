@@ -1,5 +1,6 @@
-package Hammurabi;               // package declaration 
+package Hammurabi;
 
+import java.util.InputMismatchException;
 import java.util.Random;         // imports go here
 import java.util.Scanner;
 
