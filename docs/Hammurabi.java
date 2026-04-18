@@ -83,7 +83,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             }
 
             //Harvest
-            int harvested = harvest(acresPlanted, acresPlanted * 2);
+            int harvested = harvest(acresPlanted); 
             grain += harvested;
             
             harvestPerAcre = (acresPlanted == 0) ? 0 : harvested / acresPlanted;
@@ -216,10 +216,10 @@ void printSummary(int year, int starved, int immigrants,
     return (20 * acres + grain) / (100 * population) + 1;
     }
 
-    int harvest(int acres, int bushelsUsedAsSeed) {
-    int yield = rand.nextInt(6) + 1; 
-    return acres * yield;
-    }
+    int harvest(int acresPlanted) {
+        int yield = rand.nextInt(6) + 1;
+        return acresPlanted * yield;
+}
 
     int grainEatenByRats(int bushels) {
     int chance = rand.nextInt(100);
