@@ -34,48 +34,76 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         int immigrantsLastYear = 5;
         int harvestPerAcre = 3;
         int ratsAte = 200;
-
-    }
         
     //other methods go here
         while (year <= 10) {
             
             printSummary(year, starvedLastYear, immigrantsLastYear, population, harvestPerAcre,  ratsAte, grain, acres, landPrice);
 
+            // Land Buy
+
             int acresToBuy = askHowManyAcresToBuy(landPrice, grain);
             acres += acresToBuy;
             grain -= acresToBuy * landPrice;
-        
-            year++;
-    }
-    void printSummary(int year, int starved, int immigrants,
-                  int population, int yield, int rats,
-                  int grain, int acres, int price) {
 
-        System.out.println("\nO Anitra, the great Hammurabi!");
-        System.out.println("You are in year " + year + " of your ten year rule.");
-        System.out.println("In the previous year " + starved + " people starved.");
-        System.out.println("In the previous year " + immigrants + " people entered the kingdom.");
-        System.out.println("The population is now " + population + ".");
-        System.out.println("We harvested " + (yield * acres) + " bushels at " + yield + " bushels per acre.");
-        System.out.println("Rats destroyed " + rats + " bushels.");
-        System.out.println("We now have " + grain + " bushels in storage.");
-        System.out.println("The city owns " + acres + " acres of land.");
-        System.out.println("Land is currently worth " + price + " bushels per acre.");
-    }
+            // Land Sell
+            int acresToSell = askHowManyAcresToSell(acres);
+            acres -= acresToSell;
+            grain += acresToSell * landPrice;
 
-    int askHowManyAcresToBuy(int price, int grain) {
-        while (true) { 
-            System.out.print("How many acres will you buy?");
-            int acres = scanner.nextInt();
+            // Grain Fed
+            int grainFed = askHowMuchGrainToFeedPeople(grain);
+            grain -= grainFed;
 
-            if (acres * price <= grain) {
-                return acres; 
+            // Plant Crops
+            int acresPlanted = askHowManyAcresToPlant(acres, population, grain);
+            grain -= acresPlanted * 2;
+
+            // Plague
+            int plague = plagueDeaths(population);
+            population -= plague;
+
+            // Starvation
+            int starved = starvationDeaths(population, grainFed);
+            population -= starved;
+
+            //Uprising
+            if (uprising(population + starved, starved)) {
+                System.out.println("You have been overthrown!");
+                finalSummary();
+                return;
             }
             
-            System.out.println("You don't have enough grain!");
-        }   
+            // Immigrants
+            int immigrants = 0;
+            if (starved == 0) {
+                immigrants = immigrants(population,acres, grain);
+                population += immigrants;
+            }
 
-    }
+            //Harvest
+            int harvested = harvest(acresPlanted, acresPlanted * 2);
+            grain += harvested;
+            harvestPerAcres = (acresPlanted == 0) ? 0 : harvested / acresPlanted;
+
+            //Rats
+            ratsAte = grainEatenByRats(grain);
+            grain -= ratsAte;
+
+            //Land Price Update
+            landPrice = newCostOfLand();
+
+            //Update Tracking
+            starvedLastYear = starved;
+            immigrantsLastYear = immigrants;
+        
+            year++;
+
+        }
+
+        finalSummary();
+}
+           
+    
 
 }
