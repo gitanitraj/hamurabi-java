@@ -84,7 +84,8 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             //Harvest
             int harvested = harvest(acresPlanted, acresPlanted * 2);
             grain += harvested;
-            harvestPerAcres = (acresPlanted == 0) ? 0 : harvested / acresPlanted;
+            
+            harvestPerAcre = (acresPlanted == 0) ? 0 : harvested / acresPlanted;
 
             //Rats
             ratsAte = grainEatenByRats(grain);
@@ -203,5 +204,15 @@ void printSummary(int year, int starved, int immigrants,
         }
         return population - peopleFed;
     }
+
+    boolean uprising(int population, int howManyPeopleStarved) {
+    if (population == 0) {
+        return true;
+    }
+    int percentStarved = (howManyPeopleStarved * 100) / population;
+    return percentStarved > 45;
+    }
+
+
 
 }
