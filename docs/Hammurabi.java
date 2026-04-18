@@ -16,7 +16,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     Random rand = new Random();  // this is an instance variable
     Scanner scanner = new Scanner(System.in);
 
-    public static void main(String\[\] args) { // required in every Java program
+    public static void main(String[] args) { // required in every Java program
         new Hammurabi().playGame();
     }
 
@@ -36,10 +36,15 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         int ratsAte = 200;
 
     }
+        
     //other methods go here
         while (year <= 10) {
             
-            printSummary(year, starvedLastYear, immigrantsLastYear, population, harvestPerAcre, ratsAte, grain, acres, landPrice);
+            printSummary(year, starvedLastYear, immigrantsLastYear, population, harvestPerAcre,  ratsAte, grain, acres, landPrice);
+
+            int acresToBuy = askHowManyAcresToBuy(landPrice, grain);
+            acres += acresToBuy;
+            grain -= acresToBuy * landPrice;
         
             year++;
     }
@@ -58,4 +63,19 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         System.out.println("The city owns " + acres + " acres of land.");
         System.out.println("Land is currently worth " + price + " bushels per acre.");
     }
+
+    int askHowManyAcresToBuy(int price, int grain) {
+        while (true) { 
+            System.out.print("How many acres will you buy?");
+            int acres = scanner.nextInt();
+
+            if (acres * price <= grain) {
+                return acres; 
+            }
+            
+            System.out.println("You don't have enough grain!");
+        }   
+
+    }
+
 }
