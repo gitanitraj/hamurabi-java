@@ -188,4 +188,20 @@ void printSummary(int year, int starved, int immigrants,
         }
     }
 
+    int plagueDeaths(int population) {
+        int chance = rand.nextInt(100); 
+            if (chance < 15) {
+                return population / 2;
+            }
+            return 0;
+    }
+
+    int starvationDeaths(int population, int grainFed) {
+        int peopleFed = grainFed / 20;
+        if (peopleFed >= population) {
+            return 0;
+        }
+        return population - peopleFed;
+    }
+
 }
