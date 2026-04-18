@@ -32,7 +32,8 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     //other methods go here
         while (year <= 10) {
             
-            printSummary(year, starvedLastYear, immigrantsLastYear, population, harvestPerAcre,  ratsAte, grain, acres, landPrice, acresPlantedLastYear);
+            printSummary(year, starvedLastYear, immigrantsLastYear,
+             population, harvestPerAcre, ratsAte, grain, acres, landPrice, acresPlantedLastYear, harvestedLastYear);
 
             // Land Buy
 
@@ -78,10 +79,14 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
                 population += immigrants;
             }
 
-            //Harvest
+            // Harvest
             int harvested = harvest(acresPlanted); 
             grain += harvested;
 
+            // store for next year's summary
+            harvestedLastYear = harvested;
+
+            // compute yield per acre
             harvestPerAcre = (acresPlanted == 0) ? 0 : harvested / acresPlanted;
 
             //Rats
@@ -125,7 +130,6 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             
             System.out.println("You don't have enough grain!");
         }   
-
     }    
 
     int askHowManyAcresToSell(int acresOwned) {
