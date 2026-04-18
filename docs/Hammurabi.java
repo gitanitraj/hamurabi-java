@@ -213,6 +213,13 @@ void printSummary(int year, int starved, int immigrants,
     return percentStarved > 45;
     }
 
+    int immigrants(int population, int acres, int grain) {
+    if (population <= 0) {
+        return 0;
+    }
+    return (20 * acres + grain) / (100 * population) + 1;
+    }
+
 
 
 }
