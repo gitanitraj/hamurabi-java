@@ -124,9 +124,7 @@ void printSummary(int year, int starved, int immigrants,
 
     int askHowManyAcresToBuy(int price, int grain) {
         while (true) { 
-            System.out.print("How many acres will you buy?");
-            int acres = scanner.nextInt();
-
+            int acres = getNumber("How many acres do you want to buy? ");
             if (acres * price <= grain) {
                 return acres; 
             }
@@ -138,8 +136,7 @@ void printSummary(int year, int starved, int immigrants,
 
     int askHowManyAcresToSell(int acresOwned) {
         while (true) { 
-            System.out.print("How many acres do you want to sell?");
-            int acresToSell = scanner.nextInt();
+            int acresToSell = getNumber("How many acres do you want to sell? ");
 
             if (acresToSell < 0) {
                 System.out.println("You cannot sell negative acres!");
@@ -154,8 +151,7 @@ void printSummary(int year, int starved, int immigrants,
     }
     int askHowMuchGrainToFeedPeople(int grain) {
         while (true) {
-            System.out.print("How much grain do you want to feed your people?");
-            int grainFed = scanner.nextInt();
+            int grainFed = getNumber("How much grain do you want to feed your people?");
             
             if (grainFed <= grain && grainFed >= 0) {
                 return grainFed;
@@ -165,8 +161,7 @@ void printSummary(int year, int starved, int immigrants,
     }
     int askHowManyAcresToPlant(int acresOwned, int population, int grain) {
         while (true) {
-            System.out.print("How many acres do you want to plant?");
-            int acresToPlant = scanner.nextInt();
+            int acresToPlant = getNumber("How many acres do you want to plant?");
 
             int maxByPeople = population * 10;
             int maxByGrain = grain / 2;
