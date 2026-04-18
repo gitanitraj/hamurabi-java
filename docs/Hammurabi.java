@@ -104,6 +104,88 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         finalSummary();
 }
            
-    
+void printSummary(int year, int starved, int immigrants,
+                  int population, int yield, int rats,
+                  int grain, int acres, int price) {
+
+        System.out.println("\nO Anitra, ruler of the great Hammurabi!");
+        System.out.println("You are in year " + year + " of your ten year rule.");
+        System.out.println("In the previous year " + starved + " people starved.");
+        System.out.println("In the previous year " + immigrants + " people entered the kingdom.");
+        System.out.println("The population is now " + population + ".");
+        System.out.println("We harvested " + (yield * acres) + " bushels at " + yield + " bushels per acre.");
+        System.out.println("Rats destroyed " + rats + " bushels.");
+        System.out.println("We now have " + grain + " bushels in storage.");
+        System.out.println("The city owns " + acres + " acres of land.");
+        System.out.println("Land is currently worth " + price + " bushels per acre.");
+    }
+
+    int askHowManyAcresToBuy(int price, int grain) {
+        while (true) { 
+            System.out.print("How many acres will you buy?");
+            int acres = scanner.nextInt();
+
+            if (acres * price <= grain) {
+                return acres; 
+            }
+            
+            System.out.println("You don't have enough grain!");
+        }   
+
+    }    
+
+    int askHowManyAcresToSell(int acresOwned) {
+        while (true) { 
+            System.out.print("How many acres do you want to sell?");
+            int acresToSell = scanner.nextInt();
+
+            if (acresToSell < 0) {
+                System.out.println("You cannot sell negative acres!");
+            }
+            else if (acresToSell > acresOwned) {
+                System.out.println("You don't own enough acres!");
+            }
+            else {
+                return acresToSell;
+            }
+        }
+    }
+    int askHowMuchGrainToFeedPeople(int grain) {
+        while (true) {
+            System.out.print("How much grain do you want to feed your people?");
+            int grainFed = scanner.nextInt();
+            
+            if (grainFed <= grain && grainFed >= 0) {
+                return grainFed;
+            }
+            System.out.println("O Anitra, ruler of the great Hammurabi, we don't have that much grain!");  
+        }
+    }
+    int askHowManyAcresToPlant(int acresOwned, int population, int grain) {
+        while (true) {
+            System.out.print("How many acres do you want to plant?");
+            int acresToPlant = scanner.nextInt();
+
+            int maxByPeople = population * 10;
+            int maxByGrain = grain / 2;
+
+            if (acresToPlant < 0) {
+                System.out.println("You cannot plant negative acres!");
+            }
+            else if (acresToPlant > acresOwned) {
+                System.out.println("You don't own that many acres!");
+            }
+            else if (acresToPlant > maxByGrain) {
+                System.out.println("Not enough grain for seeds!");
+            }
+            else if (acresToPlant > maxByPeople) {
+                System.out.print("Not enough people to farm these acres!");
+            }
+            else {
+                return acresToPlant;
+            }
+            
+        }
+    }
 
 }
