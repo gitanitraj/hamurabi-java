@@ -1,4 +1,4 @@
-package Hammurabi;
+package hammurabi;
 
 import java.util.InputMismatchException;
 import java.util.Random;         // imports go here
@@ -26,6 +26,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         int immigrantsLastYear = 5;
         int harvestPerAcre = 3;
         int acresPlantedLastYear = 0;
+        int harvestedLastYear = 0;
         int ratsAte = 200;
         
     //other methods go here
@@ -101,14 +102,14 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         finalSummary(population, acres, grain, starvedLastYear);
 }
            
-        void printSummary(int year, int starved, int immigrants,int population, int yield, int rats, int grain, int acres, int price, int acresPlanted) {
+        void printSummary(int year, int starved, int immigrants,int population, int yield, int rats, int grain, int acres, int price, int harvested, int acresPlanted) {
 
         System.out.println("\nO Anitra, ruler of the great Hammurabi!");
         System.out.println("You are in year " + year + " of your ten year rule.");
         System.out.println("In the previous year " + starved + " people starved.");
         System.out.println("In the previous year " + immigrants + " people entered the kingdom.");
         System.out.println("The population is now " + population + ".");
-        System.out.println("We harvested " + (yield * acresPlanted) + " bushels at " + yield + " bushels per acre.");
+        System.out.println("We harvested " + harvested + " bushels at " + yield + " bushels per acre.");
         System.out.println("Rats destroyed " + rats + " bushels.");
         System.out.println("We now have " + grain + " bushels in storage.");
         System.out.println("The city owns " + acres + " acres of land.");
@@ -169,7 +170,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
                 System.out.println("Not enough grain for seeds!");
             }
             else if (acresToPlant > maxByPeople) {
-                System.out.print("Not enough people to farm these acres!");
+                System.out.println("Not enough people to farm these acres!");
             }
             else {
                 return acresToPlant;
@@ -243,7 +244,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
 
     // Simple performance rating
     if (starvedLastYear > population / 2) {
-        System.out.println("Rating: TERRIBLE - You mismanaged the city & were overthrown.");
+        System.out.println("Rating: TERRIBLE - You mismanaged the city or were overthrown.");
     }
     else if (acresPerPerson < 5) {
         System.out.println("Rating: POOR - Not enough land per person.");
