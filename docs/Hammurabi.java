@@ -22,8 +22,24 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
 
     void playGame() {
         // declare local variables here: grain, population, etc.
-        // statements go after the declations
-    }
+        int population = 100;
+        int grain = 2800;
+        int acres = 1000;
+        int landPrice = 19;
 
+        int year = 1;
+
+        // statements go after the declations
+        int starvedLastYear = 0;
+        int immigrantsLastYear = 5;
+        int harvestPerAcre = 3;
+        int ratsAte = 200;
+
+    }
     //other methods go here
+    while (year <= 10) {
+        printSummary(year, starvedLastYear, immigrantsLastYear, population, harvestPerAcre, ratsAte, grain, acres, landPrice);
+        // decisions and calculations go here
+        year++;
+    }
 }
