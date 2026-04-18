@@ -37,9 +37,25 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
 
     }
     //other methods go here
-    while (year <= 10) {
-        printSummary(year, starvedLastYear, immigrantsLastYear, population, harvestPerAcre, ratsAte, grain, acres, landPrice);
-        // decisions and calculations go here
-        year++;
+        while (year <= 10) {
+            
+            printSummary(year, starvedLastYear, immigrantsLastYear, population, harvestPerAcre, ratsAte, grain, acres, landPrice);
+        
+            year++;
+    }
+    void printSummary(int year, int starved, int immigrants,
+                  int population, int yield, int rats,
+                  int grain, int acres, int price) {
+
+        System.out.println("\nO Anitra, the great Hammurabi!");
+        System.out.println("You are in year " + year + " of your ten year rule.");
+        System.out.println("In the previous year " + starved + " people starved.");
+        System.out.println("In the previous year " + immigrants + " people entered the kingdom.");
+        System.out.println("The population is now " + population + ".");
+        System.out.println("We harvested " + (yield * acres) + " bushels at " + yield + " bushels per acre.");
+        System.out.println("Rats destroyed " + rats + " bushels.");
+        System.out.println("We now have " + grain + " bushels in storage.");
+        System.out.println("The city owns " + acres + " acres of land.");
+        System.out.println("Land is currently worth " + price + " bushels per acre.");
     }
 }
