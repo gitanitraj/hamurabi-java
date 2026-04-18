@@ -11,9 +11,10 @@ import java.util.Scanner;
 package hammurabi;               // package declaration 
 import java.util.Random;         // imports go here
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Hammurabi {         // must save in a file named Hammurabi.java
-    Random rand = new Random();  // this is an instance variable
+    static Random rand = new Random();  // this is an instance variable
     Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) { // required in every Java program
@@ -70,7 +71,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             //Uprising
             if (uprising(population + starved, starved)) {
                 System.out.println("You have been overthrown!");
-                finalSummary();
+                finalSummary(population, acres, grain, starvedLastYear);
                 return;
             }
             
@@ -102,7 +103,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
 
         }
 
-        finalSummary();
+        finalSummary(population, acres, grain, starvedLastYear);
 }
            
 void printSummary(int year, int starved, int immigrants,
@@ -238,6 +239,50 @@ void printSummary(int year, int starved, int immigrants,
     int newCostOfLand() {
         return rand.nextInt(7) + 17;
     }
+
+    void finalSummary(int population, int acres, int grain, int starvedLastYear) {
+
+    System.out.println("\n===== FINAL SUMMARY =====");
+
+    System.out.println("Final population: " + population);
+    System.out.println("Final land owned: " + acres);
+    System.out.println("Grain in storage: " + grain);
+    System.out.println("People starved last year: " + starvedLastYear);
+
+    int acresPerPerson = (population == 0) ? acres : acres / population;
+
+    System.out.println("Acres per person: " + acresPerPerson);
+
+    // Simple performance rating
+    if (starvedLastYear > population / 2) {
+        System.out.println("Rating: TERRIBLE - You mismanaged the city & were overthrown.");
+    }
+    else if (acresPerPerson < 5) {
+        System.out.println("Rating: POOR - Not enough land per person.");
+    }
+    else if (acresPerPerson < 10) {
+        System.out.println("Rating: AVERAGE - Acceptable leadership.");
+    }
+    else {
+        System.out.println("Rating: EXCELLENT - You ruled wisely!");
+    }
+
+    System.out.println("=========================");
+}
+
+    int getNumber(String message) {
+
+    while (true) {
+        System.out.print(message);
+
+        try {
+            return scanner.nextInt();
+        }
+        catch (InputMismatchException e) {
+            System.out.println("\"" + scanner.next() + "\" isn't a number!");
+        }
+    }
+}
 
 
 }
