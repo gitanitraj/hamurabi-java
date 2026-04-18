@@ -223,7 +223,17 @@ void printSummary(int year, int starved, int immigrants,
     int harvest(int acres, int bushelsUsedAsSeed) {
     int yield = rand.nextInt(6) + 1; 
     return acres * yield;
-}
+    }
+
+    int grainEatenByRats(int bushels) {
+    int chance = rand.nextInt(100);
+
+    if (chance < 40) {
+        int percent = rand.nextInt(21) + 10; // 10 to 30
+        return (bushels * percent) / 100;
+    }
+    return 0;
+    }
 
 
 }
