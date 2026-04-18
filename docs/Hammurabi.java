@@ -1,17 +1,7 @@
-import java.io.IOException;
-import java.util.Scanner;
+package Hammurabi;               // package declaration 
 
-// this seems to be an example of a solution that mimics the original BASIC code the author was writing from.
-//
-// it's a great example of Very Bad Java.
-// Do not write Java like this. If you do, do NOT tell people you went to Zip Code.
-// I'm serious.
-// (how the hell would you ever be able to TEST this piece of code?)
-//
-package hammurabi;               // package declaration 
 import java.util.Random;         // imports go here
 import java.util.Scanner;
-import java.util.InputMismatchException;
 
 public class Hammurabi {         // must save in a file named Hammurabi.java
     static Random rand = new Random();  // this is an instance variable
@@ -34,12 +24,13 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         int starvedLastYear = 0;
         int immigrantsLastYear = 5;
         int harvestPerAcre = 3;
+        int acresPlantedLastYear = 0;
         int ratsAte = 200;
         
     //other methods go here
         while (year <= 10) {
             
-            printSummary(year, starvedLastYear, immigrantsLastYear, population, harvestPerAcre,  ratsAte, grain, acres, landPrice);
+            printSummary(year, starvedLastYear, immigrantsLastYear, population, harvestPerAcre,  ratsAte, grain, acres, landPrice, acresPlantedLastYear);
 
             // Land Buy
 
@@ -59,6 +50,9 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             // Plant Crops
             int acresPlanted = askHowManyAcresToPlant(acres, population, grain);
             grain -= acresPlanted * 2;
+
+            // store for next year's summary
+            acresPlantedLastYear = acresPlanted;
 
             // Plague
             int plague = plagueDeaths(population);
@@ -85,7 +79,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             //Harvest
             int harvested = harvest(acresPlanted); 
             grain += harvested;
-            
+
             harvestPerAcre = (acresPlanted == 0) ? 0 : harvested / acresPlanted;
 
             //Rats
@@ -106,16 +100,14 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         finalSummary(population, acres, grain, starvedLastYear);
 }
            
-void printSummary(int year, int starved, int immigrants,
-                  int population, int yield, int rats,
-                  int grain, int acres, int price) {
+        void printSummary(int year, int starved, int immigrants,int population, int yield, int rats, int grain, int acres, int price, int acresPlanted) {
 
         System.out.println("\nO Anitra, ruler of the great Hammurabi!");
         System.out.println("You are in year " + year + " of your ten year rule.");
         System.out.println("In the previous year " + starved + " people starved.");
         System.out.println("In the previous year " + immigrants + " people entered the kingdom.");
         System.out.println("The population is now " + population + ".");
-        System.out.println("We harvested " + (yield * acres) + " bushels at " + yield + " bushels per acre.");
+        System.out.println("We harvested " + (yield * acresPlanted) + " bushels at " + yield + " bushels per acre.");
         System.out.println("Rats destroyed " + rats + " bushels.");
         System.out.println("We now have " + grain + " bushels in storage.");
         System.out.println("The city owns " + acres + " acres of land.");
