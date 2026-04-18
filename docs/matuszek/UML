@@ -1,0 +1,21 @@
+Hammurabi
+ ├── instance variables (Random, Scanner)
+ ├── main()
+ ├── playGame()
+ │     ├── input phase
+ │     ├── simulation phase
+ │     └── finalSummary()
+ ├── ask methods
+ │     ├── buy
+ │     ├── sell
+ │     ├── feed
+ │     └── plant
+ ├── simulation methods
+ │     ├── plagueDeaths
+ │     ├── starvationDeaths
+ │     ├── uprising
+ │     ├── immigrants
+ │     ├── harvest
+ │     ├── rats
+ │     └── newCostOfLand
+ └── finalSummary()
