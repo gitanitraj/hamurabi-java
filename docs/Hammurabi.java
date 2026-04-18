@@ -235,5 +235,9 @@ void printSummary(int year, int starved, int immigrants,
     return 0;
     }
 
+    int newCostOfLand() {
+        return rand.nextInt(7) + 17;
+    }
+
 
 }
