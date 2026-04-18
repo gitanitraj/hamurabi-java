@@ -220,6 +220,10 @@ void printSummary(int year, int starved, int immigrants,
     return (20 * acres + grain) / (100 * population) + 1;
     }
 
+    int harvest(int acres, int bushelsUsedAsSeed) {
+    int yield = rand.nextInt(6) + 1; 
+    return acres * yield;
+}
 
 
 }
