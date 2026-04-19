@@ -126,8 +126,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             int acres = getNumber("How many acres do you want to buy? ");
             if (acres * price <= grain) {
                 return acres; 
-            }
-            
+            }   
             System.out.println("You don't have enough grain!");
         }   
     }    
@@ -149,7 +148,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     }
     int askHowMuchGrainToFeedPeople(int grain) {
         while (true) {
-            int grainFed = getNumber("How much grain do you want to feed your people?");
+            int grainFed = getNumber("How much grain do you want to feed your people? ");
             
             if (grainFed <= grain && grainFed >= 0) {
                 return grainFed;
@@ -159,7 +158,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     }
     int askHowManyAcresToPlant(int acresOwned, int population, int grain) {
         while (true) {
-            int acresToPlant = getNumber("How many acres do you want to plant?");
+            int acresToPlant = getNumber("How many acres do you want to plant? ");
 
             int maxByPeople = population * 10;
             int maxByGrain = grain / 2;
@@ -168,7 +167,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
                 System.out.println("You cannot plant negative acres!");
             }
             else if (acresToPlant > acresOwned) {
-                System.out.println("You don't own that many acres!");
+                System.out.println("You do not own enough acres!");
             }
             else if (acresToPlant > maxByGrain) {
                 System.out.println("Not enough grain for seeds!");
@@ -200,18 +199,18 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     }
 
     boolean uprising(int population, int howManyPeopleStarved) {
-    if (population == 0) {
+        if (population == 0) {
         return true;
     }
-    int percentStarved = (howManyPeopleStarved * 100) / population;
-    return percentStarved > 45;
+        int percentStarved = (howManyPeopleStarved * 100) / population;
+        return percentStarved > 45;
     }
 
     int immigrants(int population, int acres, int grain) {
-    if (population <= 0) {
+        if (population <= 0) {
         return 0;
     }
-    return (20 * acres + grain) / (100 * population) + 1;
+        return (20 * acres + grain) / (100 * population) + 1;
     }
 
     int harvest(int acresPlanted) {
@@ -222,11 +221,11 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     int grainEatenByRats(int bushels) {
     int chance = rand.nextInt(100);
 
-    if (chance < 40) {
+        if (chance < 40) {
         int percent = rand.nextInt(21) + 10; // 10 to 30
         return (bushels * percent) / 100;
     }
-    return 0;
+        return 0;
     }
 
     int newCostOfLand() {
