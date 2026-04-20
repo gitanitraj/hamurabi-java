@@ -9,7 +9,7 @@ public class hammurabi {         // must save in a file named Hammurabi.java
     Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) { // required in every Java program
-        new Hammurabi().playGame();
+        new hammurabi().playGame();
     }
 
     void playGame() {
